@@ -6,7 +6,7 @@ using namespace std;
 static int get_option() {
 	int option;
 	while (true) {
-		option = get_int();
+		get_int(option);
 		if (option > -1 && option < 4) return option;
 		cout << "Введите номер от 0 до 3!\n>";
 	}

@@ -33,18 +33,20 @@ static bool check_power(const int power) {
 	return false;
 }
 
-int get_int() {
-	int n;
+void get_int(int& n) {
 	do cin >> n;
 	while (!check_cin());
-	return n;
 }
 
-static int get_int(bool (*check)(const int)) {
-	int n;
+static void get_int(int& n, bool (*check)(const int)) {
 	do cin >> n;
 	while (!check(n));
-	return n;
+}
+
+static void get_coef(int& i, char name) {
+	cout << "Введите коэффициент " << name << ":\n>";
+	do cin >> i;
+	while (!check_cin());
 }
 
 static void find_delims(const int num) {
@@ -68,12 +70,6 @@ static void find_delims(const int num) {
 	if (delims.size() == 1) cout << simple;
 }
 
-static void get_coef(int& i, char name) {
-	cout << "Введите коэффициент " << name << ":\n>";
-	do cin >> i;
-	while (!check_cin());
-}
-
 static void convert(const int num, const int base) {
 	cout << "\n";
 }
@@ -82,7 +78,8 @@ void find_delims() {
 	cout << "Простые числа";
 	while (true) {
 		cout << "\nВведите число (0 для выхода):\n>";
-		int number = get_int(&check_pos_num);
+		int number;
+		get_int(number, &check_pos_num);
 		if (number == 0) break;
 		find_delims(number);
 	}
@@ -92,12 +89,14 @@ void convert() {
 	cout << "Перевод систем счисления";
 	while (true) {
 		cout << "\nВведите основание системы исходного числа (2, 10, 16, или 0 для выхода)\n>";
-		int base = get_int(&check_power);
-		if (base == 0) break;
+		int power;
+		get_int(power, &check_power);
+		if (power == 0) break;
 		cout << "\nВведите число:\n>";
-		int number = get_int();
+		int number;
+		get_int(number);
 		if (number == 0) break;
-		convert(number, base);
+		convert(number, power);
 	}
 }
 

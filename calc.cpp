@@ -10,8 +10,6 @@ inline list<ListType>& operator+=(list<ListType>& l, const ListType el) {
 	return l;
 }
 
-static const string enter_number = "\nВведите число (0 для выхода):\n>";
-
 bool check_cin() {
 	if (cin) return true;
 	cout << "Введите целое число!\n";
@@ -28,6 +26,13 @@ static bool check_pos_num(const int num) {
 	return false;
 }
 
+static bool check_power(const int power) {
+	if (!check_cin()) return false;
+	if (power == 0 || power == 2 || power == 8 || power == 10) return true;
+	cout << "Основание должно быть равно 2, 10, 16!";
+	return false;
+}
+
 int get_int() {
 	int n;
 	do cin >> n;
@@ -35,11 +40,18 @@ int get_int() {
 	return n;
 }
 
+static int get_int(bool (*check)(const int)) {
+	int n;
+	do cin >> n;
+	while (!check(n));
+	return n;
+}
+
 static void find_delims(const int num) {
 	const string delims_s = "Делители числа ";
 	const string simple = "\nЭто число - простое";
 	if (num == 1) {
-		cout << delims_s << num << ": 1" << simple;
+		cout << delims_s << "1: 1" << simple;
 		return;
 	}
 	const int half = num / 2;
@@ -62,13 +74,15 @@ static void get_coef(int& i, char name) {
 	while (!check_cin());
 }
 
+static void convert(const int num, const int base) {
+	cout << "\n";
+}
+
 void find_delims() {
 	cout << "Простые числа";
 	while (true) {
-		cout << enter_number;
-		int number;
-		do cin >> number;
-		while (!check_pos_num(number));
+		cout << "\nВведите число (0 для выхода):\n>";
+		int number = get_int(&check_pos_num);
 		if (number == 0) break;
 		find_delims(number);
 	}
@@ -77,9 +91,13 @@ void find_delims() {
 void convert() {
 	cout << "Перевод систем счисления";
 	while (true) {
-		cout << enter_number;
+		cout << "\nВведите основание системы исходного числа (2, 10, 16, или 0 для выхода)\n>";
+		int base = get_int(&check_power);
+		if (base == 0) break;
+		cout << "\nВведите число:\n>";
 		int number = get_int();
 		if (number == 0) break;
+		convert(number, base);
 	}
 }
 

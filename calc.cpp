@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <list>
 #include "calc.h"
 
@@ -12,24 +12,24 @@ inline list<ListType>& operator+=(list<ListType>& l, const ListType el) {
 
 bool check_cin() {
 	if (cin) return true;
-	cout << "Ââåäèòå öåëîå ÷èñëî!\n";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾!\n";
 	cin.clear();
 	cin.ignore(SHRT_MAX, '\n');
 	return false;
 }
 
-/** ßâëÿåòñÿ ëè ÷èñëî ïîëîæèòåëüíûì */
+/** Ð¯Ð²Ð»ÑÐµÑ‚ÑÑ Ð»Ð¸ Ñ‡Ð¸ÑÐ»Ð¾ Ð¿Ð¾Ð»Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¼ */
 static bool check_pos_num(const int num) {
 	if (!check_cin()) return false;
 	if (num > -1) return true;
-	cout << "×èñëî äîëæíî áûòü ïîëîæèòåëüíûì!\n>";
+	cout << "Ð§Ð¸ÑÐ»Ð¾ Ð´Ð¾Ð»Ð¶Ð½Ð¾ Ð±Ñ‹Ñ‚ÑŒ Ð¿Ð¾Ð»Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¼!\n>";
 	return false;
 }
 
 static bool check_power(const int power) {
 	if (!check_cin()) return false;
 	if (power == 0 || power == 2 || power == 8 || power == 10) return true;
-	cout << "Îñíîâàíèå äîëæíî áûòü ðàâíî 2, 10, 16!";
+	cout << "ÐžÑÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð´Ð¾Ð»Ð¶Ð½Ð¾ Ð±Ñ‹Ñ‚ÑŒ Ñ€Ð°Ð²Ð½Ð¾ 2, 10, 16!";
 	return false;
 }
 
@@ -48,8 +48,8 @@ static int get_int(bool (*check)(const int)) {
 }
 
 static void find_delims(const int num) {
-	const string delims_s = "Äåëèòåëè ÷èñëà ";
-	const string simple = "\nÝòî ÷èñëî - ïðîñòîå";
+	const string delims_s = "Ð”ÐµÐ»Ð¸Ñ‚ÐµÐ»Ð¸ Ñ‡Ð¸ÑÐ»Ð° ";
+	const string simple = "\nÐ­Ñ‚Ð¾ Ñ‡Ð¸ÑÐ»Ð¾ - Ð¿Ñ€Ð¾ÑÑ‚Ð¾Ðµ";
 	if (num == 1) {
 		cout << delims_s << "1: 1" << simple;
 		return;
@@ -69,7 +69,7 @@ static void find_delims(const int num) {
 }
 
 static void get_coef(int& i, char name) {
-	cout << "Ââåäèòå êîýôôèöèåíò " << name << ":\n>";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ " << name << ":\n>";
 	do cin >> i;
 	while (!check_cin());
 }
@@ -79,9 +79,9 @@ static void convert(const int num, const int base) {
 }
 
 void find_delims() {
-	cout << "Ïðîñòûå ÷èñëà";
+	cout << "ÐŸÑ€Ð¾ÑÑ‚Ñ‹Ðµ Ñ‡Ð¸ÑÐ»Ð°";
 	while (true) {
-		cout << "\nÂâåäèòå ÷èñëî (0 äëÿ âûõîäà):\n>";
+		cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾ (0 Ð´Ð»Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð°):\n>";
 		int number = get_int(&check_pos_num);
 		if (number == 0) break;
 		find_delims(number);
@@ -89,12 +89,12 @@ void find_delims() {
 }
 
 void convert() {
-	cout << "Ïåðåâîä ñèñòåì ñ÷èñëåíèÿ";
+	cout << "ÐŸÐµÑ€ÐµÐ²Ð¾Ð´ ÑÐ¸ÑÑ‚ÐµÐ¼ ÑÑ‡Ð¸ÑÐ»ÐµÐ½Ð¸Ñ";
 	while (true) {
-		cout << "\nÂâåäèòå îñíîâàíèå ñèñòåìû èñõîäíîãî ÷èñëà (2, 10, 16, èëè 0 äëÿ âûõîäà)\n>";
+		cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¾ÑÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹ Ð¸ÑÑ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ‡Ð¸ÑÐ»Ð° (2, 10, 16, Ð¸Ð»Ð¸ 0 Ð´Ð»Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð°)\n>";
 		int base = get_int(&check_power);
 		if (base == 0) break;
-		cout << "\nÂâåäèòå ÷èñëî:\n>";
+		cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾:\n>";
 		int number = get_int();
 		if (number == 0) break;
 		convert(number, base);
@@ -102,7 +102,7 @@ void convert() {
 }
 
 void solve_square_eq() {
-	cout << "Ðåøåíèå êâàäðàòíîãî óðàâíåíèÿ";
+	cout << "Ð ÐµÑˆÐµÐ½Ð¸Ðµ ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð½Ð¾Ð³Ð¾ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ñ";
 	cout << "\nax + bx^2 + c = 0\n";
 	int a, b, c;
 	get_coef(a, 'a');
@@ -119,6 +119,6 @@ void solve_square_eq() {
 		cout << "x1 = " << x1 << endl;
 		cout << "x2 = " << x2 << endl;
 	} else {
-		cout << "Êîðíåé íåò";
+		cout << "ÐšÐ¾Ñ€Ð½ÐµÐ¹ Ð½ÐµÑ‚";
 	}
 }

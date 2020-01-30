@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 bool check_cin();
 void get_int(int& n);

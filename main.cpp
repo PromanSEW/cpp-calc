@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include "calc.h"
 
 using namespace std;
